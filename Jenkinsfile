@@ -1,17 +1,39 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            agent {
-                docker {
-                    image 'node:16.13.1-alpine'
-                    // Run the container on the node specified at the top-level of the Pipeline, in the same workspace, rather than on a new node entirely:
-                    reuseNode true
-                }
-            }
-            steps {
-                sh 'node --version'
-            }
-        }
-    }
+pipeline{
+
+	agent any
+
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+
+	stages {
+
+		stage('Build') {
+
+			steps {
+				sh 'docker build -t advanced-network-jenkins:1.1 .'
+			}
+		}
+
+		stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+				sh 'docker push datkira/advanced-network-jenkins:1.1'
+			}
+		}
+	}
+
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
+
 }
