@@ -25,7 +25,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				sh 'docker push datkira/advanced-network-jenkins:1.1'
+				sh 'docker push datkira/advanced-network-jenkins'
 			}
 		}
 	}
