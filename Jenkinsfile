@@ -11,7 +11,7 @@ pipeline{
 		stage('Build') {
 
 			steps {
-				sh 'docker build -t advanced-network-jenkins:1.1 .'
+				sh 'docker build -t advanced-network-jenkins:latest .'
 			}
 		}
 
