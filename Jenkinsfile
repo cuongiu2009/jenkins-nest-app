@@ -29,11 +29,18 @@ pipeline{
 				sh 'docker images'
 			}
 		}
+		
+		stage('Docker Tag') {
+
+			steps {
+				sh 'docker tag advanced-network-jenkins datkira/advanced-network-jenkins'
+			}
+		}
 
 		stage('Push') {
 
 			steps {
-				sh 'docker push https://hub.docker.com/advanced-network-jenkins'
+				sh 'docker push datkira/advanced-network-jenkins'
 			}
 		}
 	}
