@@ -33,7 +33,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				sh 'docker push https://hub.docker.com/datkira/advanced-network-jenkins'
+				sh 'docker push https://hub.docker.com/advanced-network-jenkins'
 			}
 		}
 	}
