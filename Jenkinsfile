@@ -48,7 +48,7 @@ pipeline{
 		stage('Run in Container') {
 
 			steps {
-				sh 'docker run --publish 3000:3000 --name jenkins-mmt --rm datkira/advanced-network-jenkins:latest'
+				sh 'docker run --publish 3000:3000 --name jenkins-mmt -d --rm datkira/advanced-network-jenkins:latest'
 			}
 		}
 	}
