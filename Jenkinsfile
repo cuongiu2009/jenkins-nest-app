@@ -44,6 +44,12 @@ pipeline{
 			}
 		}
 		
+		stage('Remove current container if it exists') {
+
+			steps {
+				sh 'docker rm -f jenkins-mmt || true'
+			}
+		}
 		
 		stage('Run in Container') {
 
